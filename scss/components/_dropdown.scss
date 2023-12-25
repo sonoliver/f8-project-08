@@ -1,10 +1,12 @@
+@use "../abstracts";
+
 .dropdown {
   position: absolute;
   left: 0;
 
   width: min(1240px, 100%);
   padding-top: 54px;
-  //   display: none;
+  display: none;
 
   &__inner {
     --inner-padding: 30px;
@@ -28,11 +30,15 @@
 }
 
 .top-menu {
+  --main-column-width: 292px;
+  --max-inner-height: calc(min(580px, 100vh - 158px) - var(--inner-padding) * 2);
+
+  position: relative;
   &__main {
-    width: 292px;
+    width: var(--main-column-width);
     overflow-y: auto;
 
-    max-height: calc(min(580px, 100vh - 158px) - var(--inner-padding) * 2);
+    height: var(--max-inner-height);
     border-right: 1px solid var(--top-menu-border-color);
   }
 }
@@ -41,18 +47,25 @@
   display: flex;
   gap: 14px;
 
+  + .menu-column {
+    margin-top: 22px;
+  }
   &__icon {
-    flex-shrink: 0;
     position: relative;
+    flex-shrink: 0;
 
     width: 36px;
     height: 36px;
+
+    @include abstracts.breakpoint(xl) {
+      display: none;
+    }
   }
 
   &__icon-1 {
     width: 30px;
     height: 30px;
-    object-fit: cover;
+    object-fit: contain;
   }
   &__icon-2 {
     position: absolute;
@@ -61,7 +74,7 @@
 
     width: 24px;
     height: 24px;
-    object-fit: cover;
+    object-fit: contain;
 
     filter: var(--menu-column-icon-color);
   }
@@ -71,7 +84,7 @@
   }
 
   &__heading {
-    margin-top: 5px;
+    margin-top: 4px;
 
     font-size: 1.6rem;
     font-weight: 500;
@@ -79,7 +92,19 @@
   }
 
   &__list {
-    margin-top: 19px;
+    margin-top: 15px;
+  }
+
+  &__item {
+    &--active .sub-menu {
+      display: grid;
+    }
+  }
+
+  &__item--active > &__link,
+  &__item:hover > &__link {
+    color: #0071dc;
+    font-weight: 500;
   }
 
   &__link {
@@ -90,10 +115,26 @@
     font-style: normal;
     font-weight: 400;
     line-height: 142.857%;
+  }
+}
 
-    &:hover {
-      color: #0071dc;
-      font-weight: 500;
-    }
+.sub-menu {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--inner-padding);
+
+  position: absolute;
+  inset: 0 0 0 var(--main-column-width);
+  padding-left: var(--inner-padding);
+
+  overflow: auto;
+
+  &--not-main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: initial;
+    inset: initial;
+    height: var(--max-inner-height);
+    padding-left: 0;
   }
 }

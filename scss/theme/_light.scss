@@ -2,8 +2,8 @@
 
 html {
   --text-color: #1a162e;
-  --icon-color: brightness(0) saturate(100%) invert(7%) sepia(10%)
-    saturate(6205%) hue-rotate(221deg) brightness(91%) contrast(94%);
+  --icon-color: brightness(0) saturate(100%) invert(7%) sepia(10%) saturate(6205%) hue-rotate(221deg) brightness(91%)
+    contrast(94%);
 
   --body-bg: #f6f6f6;
   --header-bg-color: #eeeeee;
@@ -14,12 +14,14 @@ html {
   @include abstracts.breakpoint(lg) {
     --header-bg-color: #fff;
     --header-shadow: rgba(237, 237, 246, 0.2);
+    --navbar-background-color: #fff;
+    --navbar-shadow-color: #rgba(200, 200, 200, 0.4);
   }
 
   // dropdown
   --dropdown-bg-color: #fff;
   --dropdown-shadow-color: rgba(200, 200, 200, 0.4);
   --top-menu-border-color: #d2d1d6;
-  --menu-column-icon-color: brightness(0) saturate(100%) invert(7%) sepia(25%)
-    saturate(2971%) hue-rotate(223deg) brightness(94%) contrast(94%);
+  --menu-column-icon-color: brightness(0) saturate(100%) invert(7%) sepia(25%) saturate(2971%) hue-rotate(223deg)
+    brightness(94%) contrast(94%);
 }
